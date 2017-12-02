@@ -20,7 +20,7 @@ namespace TileMazeMaker.Algorithm.Maze
             }
 
             List<IMazeCell> candidate = new List<IMazeCell>( actived[0].Neighbours );
-            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.Invalid);
+            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.DirectionCount);
 
             //actived now has only one element in it, active[0]. it do not need to have a priority
             while (actived.Count < cells.Count) 
@@ -37,7 +37,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 candidate.Remove(min);
 
                 candidate_connect_direction.Clear();
-                for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+                for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
                 {
                     EMazeDirection dir = (EMazeDirection)i;
                     IMazeCell neighbour = min.GetNeighbour(dir);

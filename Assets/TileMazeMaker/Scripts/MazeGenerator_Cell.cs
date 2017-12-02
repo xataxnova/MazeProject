@@ -68,7 +68,7 @@ namespace TileMazeMaker.TileGen
         GameObject CreateMazeCellObject(IMazeCell cell_def)
         {
             List<EMazeDirection> connections = new List<EMazeDirection>();
-            for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+            for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
             {
                 if (cell_def.IsConnectedTo((EMazeDirection)i))
                 {

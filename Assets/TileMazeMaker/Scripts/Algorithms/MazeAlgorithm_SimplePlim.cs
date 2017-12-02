@@ -17,7 +17,7 @@ namespace TileMazeMaker.Algorithm.Maze
             
             //加入First 的有效Neighbour作为第一波的Candidate
             List<IMazeCell> candidate = new List<IMazeCell>(first.Neighbours);            
-            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.Invalid);
+            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.DirectionCount);
 
             //只要所有的格子没有被全部访问。
             while (actived.Count < cells.Count) 
@@ -26,7 +26,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 candidate.Remove(random);
 
                 candidate_connect_direction.Clear();
-                for (int i = 0; i < (int)EMazeDirection.Invalid; i++) 
+                for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++) 
                 {
                     EMazeDirection dir = (EMazeDirection)i;
                     IMazeCell neighbour = random.GetNeighbour(dir);

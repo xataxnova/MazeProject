@@ -129,7 +129,7 @@ namespace TileMazeMaker.TileGen
 
                         rect.SetMapTileType(temp_data, config.theme_config, config.road_name);
 
-                        for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+                        for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
                         {
                             if (cell.IsConnectedTo((EMazeDirection)i))
                             {

@@ -28,7 +28,7 @@ namespace TileMazeMaker.Algorithm.Maze
                     IMazeCell cell = maze_algorithm.GetAt(ix, iy);
                     if (cell != null && cell.ConnectionCount == 1 && Random.Range(0.0f, 1.0f) < braidingrate)
                     {
-                        for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+                        for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
                         {
                             EMazeDirection dir = (EMazeDirection)i;
 

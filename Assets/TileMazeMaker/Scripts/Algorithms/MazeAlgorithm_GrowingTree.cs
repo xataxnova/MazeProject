@@ -26,7 +26,7 @@ namespace TileMazeMaker.Algorithm.Maze
             List<IMazeCell> actived = new List<IMazeCell>();
             actived.Add(GetRandomCell());
 
-            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.Invalid);
+            List<EMazeDirection> candidate_connect_direction = new List<EMazeDirection>((int)EMazeDirection.DirectionCount);
             
             while (actived.Count > 0) 
             {
@@ -35,7 +35,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 switch (shample_type) 
                 {
                     case EGrowingTreeShampleType.Rand:
-                         random = actived[Random.Range(0, actived.Count)];
+                        random = actived[Random.Range(0, actived.Count)];
                         break;
                     case EGrowingTreeShampleType.Last:
                         random = actived[actived.Count - 1];
@@ -46,7 +46,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 }
 
                 candidate_connect_direction.Clear();
-                for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+                for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
                 {
                     EMazeDirection dir = (EMazeDirection)i;
                     IMazeCell neighbour = random.GetNeighbour(dir);

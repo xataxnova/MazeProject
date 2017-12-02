@@ -22,7 +22,7 @@ namespace TileMazeMaker.TileGen
                     return prefabs[index];
                 }
 
-                Debug.LogError(" TilePrefabConfig this [] index is invalid! " + index);
+                Debug.LogError(" TilePrefabConfig this [] index is DirectionCount! " + index);
                 return null;                
             }
         }

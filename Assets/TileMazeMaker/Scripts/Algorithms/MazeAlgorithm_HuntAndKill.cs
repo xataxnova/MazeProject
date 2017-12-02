@@ -21,7 +21,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 {
                     EMazeDirection move_dir = start_point.GenRandomNeighbourDirection(ESelectCondition.NoVisited);
                     
-                    if (move_dir == EMazeDirection.Invalid) break;                  
+                    if (move_dir == EMazeDirection.DirectionCount) break;                  
                     IMazeCell next = start_point.GetNeighbour( move_dir);
 
                     start_point.ConnectionTo(move_dir);
@@ -55,7 +55,7 @@ namespace TileMazeMaker.Algorithm.Maze
                     {
                         EMazeDirection dir = hunt_result.GenRandomNeighbourDirection(ESelectCondition.Visited);
 
-                        if (dir != EMazeDirection.Invalid) 
+                        if (dir != EMazeDirection.DirectionCount) 
                         {
                             hunt_result.ConnectionTo(dir);
                             visited++;

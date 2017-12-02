@@ -27,7 +27,7 @@ namespace TileMazeMaker.Algorithm.Maze
                     if (cell != null && cell.ConnectionCount == 1 && Random.Range(0.0f, 1.0f) < braidingrate ) 
                     {
                         bool processed = false;
-                        for (int i = 0; i < (int)EMazeDirection.Invalid; i++)
+                        for (int i = 0; i < (int)EMazeDirection.DirectionCount; i++)
                         {
                             EMazeDirection dir = (EMazeDirection)i;
 
@@ -49,7 +49,7 @@ namespace TileMazeMaker.Algorithm.Maze
                         {
                             EMazeDirection connect_dir = cell.GenRandomNeighbourDirection(ESelectCondition.NoConnected);
 
-                            if (connect_dir != EMazeDirection.Invalid)
+                            if (connect_dir != EMazeDirection.DirectionCount)
                             {
                                 cell.ConnectionTo(connect_dir);
                             }

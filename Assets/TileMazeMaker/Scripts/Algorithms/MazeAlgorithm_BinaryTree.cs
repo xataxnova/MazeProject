@@ -26,7 +26,7 @@ namespace TileMazeMaker.Algorithm.Maze
                     //如果只希望沿着某两个方向扩展，更科学的方式是使用DirectionFilter 这样可以方便的产生更多的选择组合。
                     EMazeDirection move_to_dir = cell.GenRandomNeighbourDirection(ESelectCondition.None, dir_filter);
 
-                    if (move_to_dir != EMazeDirection.Invalid) 
+                    if (move_to_dir != EMazeDirection.DirectionCount) 
                     {
                         cell.ConnectionTo(move_to_dir);
                     }

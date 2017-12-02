@@ -32,7 +32,7 @@ namespace TileMazeMaker.Algorithm.Maze
                 EMazeDirection move_dir = start_node.GenRandomNeighbourDirection( ESelectCondition.NoVisited );
 
                 //如果这个点的周围都已经访问过来，开始回溯，每次遍历回溯一格。直到找到下一个，周围有没访问过的点的节点。
-                if (move_dir == EMazeDirection.Invalid) 
+                if (move_dir == EMazeDirection.DirectionCount) 
                 {
                     back_tracker.Pop();
                     continue;

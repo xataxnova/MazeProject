@@ -10,7 +10,7 @@ namespace TileMazeMaker.Algorithm.Maze
         West = 1,
         South = 2,
         East = 3,
-        Invalid = 4,
+        DirectionCount = 4,
     }
 
     public enum ESelectCondition 
@@ -63,7 +63,7 @@ namespace TileMazeMaker.Algorithm.Maze
         public Dictionary<EMazeDirection, IMazeCell> neighbours = new Dictionary<EMazeDirection, IMazeCell>();
 
         //cached last random valid direction
-        EMazeDirection random_select_direction = EMazeDirection.Invalid;
+        EMazeDirection random_select_direction = EMazeDirection.DirectionCount;
         public EMazeDirection LastRandomNeibourDirection 
         {
             get 
@@ -195,7 +195,7 @@ namespace TileMazeMaker.Algorithm.Maze
             }
 
             //albour-broder算法需要，因此，得，保存这个值
-            random_select_direction = candidate.Count == 0 ? EMazeDirection.Invalid : candidate[Random.Range(0, candidate.Count)];
+            random_select_direction = candidate.Count == 0 ? EMazeDirection.DirectionCount : candidate[Random.Range(0, candidate.Count)];
             return random_select_direction;
         }
 

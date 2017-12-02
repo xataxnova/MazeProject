@@ -111,7 +111,7 @@ namespace TileMazeMaker.Algorithm
         public List<IAStarNode> GetPathTo(IAStarNode start, IAStarNode end)
         {
             //Debug.Log(" Start " + start + "end" + end);
-
+            //初始化
             WarmUp(start, end);
 
 
@@ -119,8 +119,10 @@ namespace TileMazeMaker.Algorithm
 
             while (open_list.Count > 0)
             {
+                //如果找到最小F值的点。
                 if (SelectMinF() == true)
                 {
+                    //找到当前点的邻居。
                     IAStarNode[] neighours = active_node.Neibhours;
                     for (int i = 0; i < neighours.Length; i++)
                     {
@@ -136,7 +138,7 @@ namespace TileMazeMaker.Algorithm
                             }
                             else//
                             {
-                                if (neighours[i].G < new_G_weight)
+                                if (neighours[i].G > new_G_weight)
                                 {
                                     neighours[i].G = new_G_weight;
                                     neighours[i].ParentNode = active_node;
