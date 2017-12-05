@@ -176,5 +176,36 @@ public class GeomUtil
 
         return cross > 0;
     }
+
+
+    public enum EFootPointOnPlaneResult
+    {
+        SuccesS,        
+        Points_In_One_Line,
+    }
+    /// <summary>
+    /// 计算空间中任何一点，到平面上的点的距离。
+    /// 公式推导大意：
+    /// 
+    /// </summary>
+    /// <param name="PA">平面上A点</param>
+    /// <param name="PB">平面上B点</param>
+    /// <param name="PC">平面上C点</param>
+    /// <param name="D">空间中D点</param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    public static EFootPointOnPlaneResult FootPointOnPlane(Vector3 PA, Vector3 PB, Vector3 PC, Vector3 D, out Vector3 result)
+    {
+        EFootPointOnPlaneResult calculate_result_type = EFootPointOnPlaneResult.Points_In_One_Line;
+        result = Vector3.zero;
+
+        
+
+
+
+
+        return calculate_result_type;
+    }
+
 }
 
