@@ -6,9 +6,8 @@ namespace TileMazeMaker
 {
     public static class SharedUtil
     {
-        //为了将地图上的二维点放到Dictionary里面快速索引，所以需要先将点Hash成一个int型，然后在hash进Dictionary。
-        //目前不支持负数，所以还是比较弱鸡的。待改进。最大也就支持32000*32000左右的地图吧
-        //但是那已经9亿个格子了，一般游戏根本用不到，通常300万个格子的世界已经非常大了。比如率土之滨也就1500的平方。
+        //这个主要给Mask用的，Mask是不规则图形，因此不用List存，而是用Dictionary存
+        //这个只是暂时的，未来的版本，将会用位图来处理。
         public static int PointHash(int x, int y) 
         {
             return x << 16 | y;
