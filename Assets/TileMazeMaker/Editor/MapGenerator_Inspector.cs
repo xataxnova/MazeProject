@@ -39,7 +39,8 @@ namespace TileMazeMaker.TileGen
             if(GUILayout.Button("Load"))
             {
                 Debug.LogWarning("Not implement");
-            }*/
+            }
+            */
             EditorGUILayout.EndHorizontal();
         }
     }

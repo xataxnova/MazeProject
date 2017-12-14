@@ -6,14 +6,14 @@ namespace TileMazeMaker.TileGen
 {
     public class TilePrefabConfig : ScriptableObject
     {
+        public int index;
         public string group_name;
         public GameObject prefab;
         public float vertical_height;        
         public bool random_direction;
         public int occurancy;
 
-		[HideInInspector]
-        public int index;
+
 
         static Vector3[] orientations = { new Vector3(0, 0, 0), new Vector3(0, 90, 0), new Vector3(0, 180, 0), new Vector3(0, 270, 0) };
         static Vector3 random_orienation

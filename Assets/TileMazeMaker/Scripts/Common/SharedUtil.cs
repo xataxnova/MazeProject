@@ -13,6 +13,17 @@ namespace TileMazeMaker
             return x << 16 | y;
         }
 
+        /// <summary>
+        /// 这个函数需要你输入x,y坐标，以及列数目。x * pitch +y 即是列索引。
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="pitch"></param>
+        /// <returns></returns>
+        public static int PointHashToListIndex(int x, int y, int pitch)
+        {
+            return x * pitch + y;
+        }
 
         #region CLASS EXTENSIONS
 
