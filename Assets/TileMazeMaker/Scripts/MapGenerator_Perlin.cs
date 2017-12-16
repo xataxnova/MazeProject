@@ -8,11 +8,16 @@ namespace TileMazeMaker.TileGen
 
     public class MapGenerator_Perlin : MonoBehaviour, IMapGenerator
     {
-        [SerializeField] MapGenerator_Perlin_Config config;
+        [SerializeField] MapGenerator_Perlin_Config config;                              
         [SerializeField] Transform m_MapRoot;
         [SerializeField] string m_MapName;
         MapArchiveFile m_ArchiveFile = null;
         IMapViewer m_MapViewer;
+
+        public void Start()
+        {
+            BuildMap();
+        }
 
         //BuildMap一般只在Editor中运行
         public void BuildMap()
