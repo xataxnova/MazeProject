@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TileMazeMaker.TileGen
 {
-    public class MapViewer_Streamer : MonoBehaviour,IMapViewer
+    public class MapViewer_Streamer : MonoBehaviour, IMapViewer
     {
         Transform m_MapRoot;
         MapArchiveFile m_ArchiveFile;
@@ -16,6 +16,48 @@ namespace TileMazeMaker.TileGen
         public int maxCreatePerFrame = 10;
         public float deleteDelay = 2.0f;
         private int SpawnGeneration = 1;
+
+        public float GridSize
+        {
+            get
+            {
+                if (m_Config != null)
+                {
+                    return m_Config.grid_size;
+                }
+                Debug.LogError("Error Config File is null");
+                return -1;
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                if (m_Config != null)
+                {
+                    return m_Config.width;
+                }
+                Debug.LogError("Error Config File is null");
+                return -1;
+            }
+        }
+
+        public int Height
+        {
+            get
+            {
+                if (m_Config != null)
+                {
+                    return m_Config.height;
+                }
+                Debug.LogError("Error Config File is null");
+                return -1;
+            }
+        }
+
+        public delegate void delegateUpdateSightPosition(int x, int y);
+        public delegateUpdateSightPosition onUpdateSightPosition;
 
         //Save the index of tile. Use member fields to avoid frequently GC.
         //key index, value tile instance id.
@@ -48,16 +90,27 @@ namespace TileMazeMaker.TileGen
                 m_MapRoot = map_root;
                 m_Config = file.GetConfigFile<TileMapBaseConfig>();
 
+
                 if (m_Config == null)
                 {
                     Debug.LogError("Error config file is null");
                 }
-                ShowMapAt(initGazeX, initGazeY);
+                TeleportTo(initGazeX, initGazeY);
             }
             else
             {
                 Debug.LogError("Error archive file is null");
             }            
+        }
+
+
+        public void TeleportTo(int center_x, int center_y)
+        {
+            ShowMapAt(center_x, center_y);
+            if (onUpdateSightPosition != null)
+            {
+                onUpdateSightPosition(center_x, center_x);
+            }
         }
 
         public void ShowMapAt(int x, int y)
@@ -70,7 +123,7 @@ namespace TileMazeMaker.TileGen
                 if (Application.isPlaying == false)
                 {
                     DeadOrAlive(true);
-                }
+                }                
             }
             
         }
@@ -127,7 +180,7 @@ namespace TileMazeMaker.TileGen
                 }
             }
 
-            Debug.Log("m_spawing cells count is " + m_SpawningCells.Count);
+            //Debug.Log("m_spawing cells count is " + m_SpawningCells.Count);
 
             foreach (int key in m_ActiveCells.Keys)
             {
@@ -144,7 +197,7 @@ namespace TileMazeMaker.TileGen
                 }
             }
 
-            Debug.Log("Dying Key count " + m_DyingCells.Count);
+            //Debug.Log("Dying Key count " + m_DyingCells.Count);
         }
 
         private void DeadOrAlive( bool execute_in_editor = false )
