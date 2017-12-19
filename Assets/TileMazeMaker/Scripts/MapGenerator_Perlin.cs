@@ -12,7 +12,7 @@ namespace TileMazeMaker.TileGen
         [SerializeField] Transform m_MapRoot;
         [SerializeField] string m_MapName;
         MapArchiveFile m_ArchiveFile = null;
-        IMapViewer m_MapViewer;
+        MapViewer m_MapViewer;
 
         public void Start()
         {
@@ -27,7 +27,7 @@ namespace TileMazeMaker.TileGen
             m_ArchiveFile = new MapArchiveFile(config);
             m_ArchiveFile.GeneratePerinMaze();
             
-            m_MapViewer = GetComponent<IMapViewer>();
+            m_MapViewer = GetComponent<MapViewer>();
             m_MapViewer.InitMapViewer(m_ArchiveFile, m_MapRoot);
         }
 

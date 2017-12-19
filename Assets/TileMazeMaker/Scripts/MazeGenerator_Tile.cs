@@ -157,7 +157,7 @@ namespace TileMazeMaker.TileGen
                     TilePrefabConfig tpc = config.GetTilePrefabConfig(map_data[index]);
                     if (tpc != null)
                     {
-                        tpc.CreateInstance(x, y, config.grid_size, map_root);
+                        MapViewer.SpawnTileMapAt(x, y, config.grid_size, map_root, tpc);
                     }
                 }
             }

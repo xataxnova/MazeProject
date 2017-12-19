@@ -4,11 +4,8 @@ using UnityEngine;
 
 namespace TileMazeMaker.TileGen
 {
-    public class MapViewer_Streamer : MonoBehaviour, IMapViewer
+    public class MapViewer_Streamer : MapViewer
     {
-        Transform m_MapRoot;
-        MapArchiveFile m_ArchiveFile;
-        TileMapBaseConfig m_Config;
         public int initGazeX = 0;
         public int initGazeY = 0;
         public int halfViewportSize = 15;
@@ -79,28 +76,18 @@ namespace TileMazeMaker.TileGen
             m_PendingGenCells.Clear();
         }
 
-        public void InitMapViewer(MapArchiveFile file, Transform map_root)
+        public override void InitMapViewer(MapArchiveFile file, Transform root)
         {
             if (file != null)
             {
+                base.InitMapViewer(file, root);
                 ResetIndex();
-                Debug.Log("Init Map Viewer Called!!!");
-
-                m_ArchiveFile = file;
-                m_MapRoot = map_root;
-                m_Config = file.GetConfigFile<TileMapBaseConfig>();
-
-
-                if (m_Config == null)
-                {
-                    Debug.LogError("Error config file is null");
-                }
                 TeleportTo(initGazeX, initGazeY);
             }
             else
             {
                 Debug.LogError("Error archive file is null");
-            }            
+            }
         }
 
 
@@ -113,7 +100,7 @@ namespace TileMazeMaker.TileGen
             }
         }
 
-        public void ShowMapAt(int x, int y)
+        public override void ShowMapAt(int x, int y)
         {
             if(m_Config.CheckValidXY(x, y))
             {
@@ -252,11 +239,12 @@ namespace TileMazeMaker.TileGen
                 tpc = m_Config.GetTilePrefabConfig(m_ArchiveFile[key]);
                 if (tpc != null)
                 {
-                    m_ActiveCells[key] = tpc.CreateInstance(
+                    m_ActiveCells[key] = SpawnTileMapAt(
                         m_SpawningCells[key].x,
-                        m_SpawningCells[key].y, 
-                        m_Config.grid_size, 
-                        m_MapRoot);
+                        m_SpawningCells[key].y,
+                        m_Config.grid_size,
+                        m_MapRoot,
+                        tpc);
                 }
 
                 m_SpawningCells.Remove(key);

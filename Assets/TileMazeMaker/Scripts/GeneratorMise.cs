@@ -53,11 +53,4 @@ namespace TileMazeMaker.TileGen
     {
         void GenerateMapArchiveFile( MapArchiveFile file );
     }
-
-    //TODO:以后改成能兼容迷宫的！！！
-    public interface IMapViewer
-    {
-        void InitMapViewer(MapArchiveFile file,Transform map_root);
-        void ShowMapAt(int x, int y);
-    }
 }
