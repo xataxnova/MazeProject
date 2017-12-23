@@ -33,6 +33,8 @@ namespace TileMazeMaker.TileGen
         [SerializeField]
         Transform map_root;
         TileMapData map_data;
+        MapViewer m_MapViewer;
+        MapArchiveFile m_ArchiveFile;
 
         //挖墙算法
         protected void DigNorth(TileMapData data, TileRect rect )
@@ -146,6 +148,17 @@ namespace TileMazeMaker.TileGen
 
         public void BuildMap()
         {
+            if (m_MapViewer == null)
+            {
+                m_MapViewer = GetComponent<MapViewer>();
+                if (m_MapViewer == null)
+                {
+                    m_MapViewer = gameObject.AddComponent<MapViewer_Full>();
+                }
+                m_ArchiveFile = new MapArchiveFile(config);
+                m_MapViewer.InitMapViewer(m_ArchiveFile, map_root);
+            }
+
             ClearMap();
             map_data = GenerateTileMapData();
 
@@ -157,7 +170,7 @@ namespace TileMazeMaker.TileGen
                     TilePrefabConfig tpc = config.GetTilePrefabConfig(map_data[index]);
                     if (tpc != null)
                     {
-                        MapViewer.SpawnTileMapAt(x, y, config.grid_size, map_root, tpc);
+                        m_MapViewer.SpawnTileMapAt(x, y, config.grid_size, map_root, tpc);
                     }
                 }
             }

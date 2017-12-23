@@ -9,10 +9,17 @@ namespace TileMazeMaker.TileGen
         protected Transform m_MapRoot;
         protected MapArchiveFile m_ArchiveFile;
         protected TileMapBaseConfig m_Config;
+        protected iResourceLoader m_ResourceLoader;
+
         virtual public void InitMapViewer(MapArchiveFile file, Transform root)
         {
-            //别忘了初始化PrefabPool
-            MapTilePrefabPool.ResetPrefabPool(null, 400, 40);
+            //如果没有挂在高级资源读取器或对象池化资源管理器，则走默认逻辑。使用最笨的FallBack资源管理器。
+            m_ResourceLoader = GetComponent<iResourceLoader>();
+            if (m_ResourceLoader == null)
+                m_ResourceLoader = new DefaultResourceLoader();
+
+            m_ResourceLoader.Reset();
+
             m_ArchiveFile = file;
             m_MapRoot = root;
             if (m_ArchiveFile != null)
@@ -31,9 +38,9 @@ namespace TileMazeMaker.TileGen
             }
         }
 
-        public static GameObject SpawnTileMapAt(int x, int y, float grid_size, Transform parent, TilePrefabConfig prefab_config, float override_height = -99999999)
+        public GameObject SpawnTileMapAt(int x, int y, float grid_size, Transform parent, TilePrefabConfig prefab_config, float override_height = -99999999)
         {
-            GameObject gobj = MapTilePrefabPool.GetTileObject( prefab_config );
+            GameObject gobj = m_ResourceLoader.GetTileObject( prefab_config );
             if (gobj != null)
             {
                 Transform trans = gobj.transform;

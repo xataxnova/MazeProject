@@ -208,11 +208,7 @@ namespace TileMazeMaker.TileGen
                 GameObject gobj = m_ActiveCells[index];
                 if (gobj != null)
                 {
-                    //暂定，以后使用对象池，暂时避免不必要的复杂性。
-                    if (Application.isPlaying)
-                        Destroy(gobj);
-                    else
-                        DestroyImmediate(gobj);
+                    m_ResourceLoader.RecycleGameObject(gobj);
                 }
                 m_ActiveCells.Remove(index);
                 m_DyingCells.Remove(index);

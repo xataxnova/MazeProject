@@ -19,10 +19,7 @@ namespace TileMazeMaker
             }            
         }
 
-        virtual public void OnAwake()
-        {
-
-        }
+        virtual public void OnAwake() { }
     }
 }
 
