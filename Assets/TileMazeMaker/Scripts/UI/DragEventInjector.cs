@@ -59,7 +59,7 @@ namespace TileMazeMaker.UI
             x = Mathf.Clamp(x, 0, m_MapStreamer.Width);
             y = Mathf.Clamp(y, 0, m_MapStreamer.Height);
 
-            Debug.Log("width " + m_MapStreamer.Width + "X " + x + " Y " + y);
+            //Debug.Log("width " + m_MapStreamer.Width + "X " + x + " Y " + y);
             if (x != old_x || y != old_y)
             {
                 m_MapStreamer.ShowMapAt(x, y);

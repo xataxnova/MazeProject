@@ -91,13 +91,13 @@ namespace TileMazeMaker.TileGen
             List<GameObject> gobj_list = null;
             for (int i = 0; i < to_be_clean_key.Count; i++)
             {
-               gobj_list = m_PrefabPool[to_be_clean_key[i]];
+                gobj_list = m_PrefabPool[to_be_clean_key[i]];
                 for (int gobj_index = 0; gobj_index < gobj_list.Count; gobj_index++)
                 {
-                    if (Application.isPlaying)
-                        GameObject.DestroyImmediate(gobj_list[i]);
+                    if (Application.isPlaying == false)
+                        GameObject.DestroyImmediate(gobj_list[gobj_index]);
                     else
-                        GameObject.Destroy(gobj_list[i]);
+                        GameObject.Destroy(gobj_list[gobj_index]);
                 }
 
                 gobj_list.Clear();
@@ -161,6 +161,21 @@ namespace TileMazeMaker.TileGen
                     DestroyObject(prefab_instance);
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            foreach (var key in m_PrefabPool.Keys)
+            {
+                sb.Append("key ");
+                sb.Append(key);
+                sb.Append(" size ");
+                sb.Append(m_PrefabPool[key].Count);
+                sb.Append(" | ");
+            }
+
+            return sb.ToString();
         }
 
         /// <summary>

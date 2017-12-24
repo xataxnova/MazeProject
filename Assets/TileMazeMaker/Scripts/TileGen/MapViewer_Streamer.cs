@@ -113,6 +113,9 @@ namespace TileMazeMaker.TileGen
                 }                
             }
             
+            //MapTilePrefabPool pool = m_ResourceLoader as MapTilePrefabPool;
+            //if (pool != null)
+            //    Debug.Log(pool.ToString());
         }
 
         /// <summary>
